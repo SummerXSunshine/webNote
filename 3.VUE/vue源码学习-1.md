@@ -14,6 +14,40 @@
 
 通过proxy来代替defineProperty，相比Vue2中的defineProperty性能更好，性能优化是浏览器去实现的。
 
+#### Proxy和Object.defineProperty的区别
+
+Proxy 的意思是代理，我一般叫他拦截器，可以拦截对象上的一个操作。用法如下，通过 new 的方式创建对象，第一个参数是被拦截的对象，第二个参数是对象操作的描述。实例化后返回一个新的对象，当我们对这个新的对象进行操作时就会调用我们描述中对应的方法。
+
+```javascript
+new Proxy(target, {
+    get(target, property) {
+
+    },
+    set(target, property) {
+
+    },
+    deleteProperty(target, property) {
+
+    }
+})
+```
+
+Proxy和Object.defineProperty的区别
+
+- Object.defineProperty只能监听到属性的读写， 而Proxy除了读写外还可以监听属性的删除，方法的调用等。
+- 我们想要监视数组的变化，基本要依靠重写数组方法的方式实现，这也是 Vue 的实现方式，而 Proxy 可以直接监视数组的变化。
+```javascript
+const list = [1, 2, 3];
+const listproxy = new Proxy(list, {
+   set(target, property, value) {
+       target[property] = value;
+       return true; // 标识设置成功
+   }
+});
+list.push(4);
+```
+- Proxy 是以非入侵的方式监管了对象的读写，而 defineProperty 需要按特定的方式定义对象的属性。
+
 **实现代码**
 ```html
 <!DOCTYPE html>
