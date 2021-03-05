@@ -101,3 +101,5 @@ function getValue {
 }
 
 ```
+
+### PromiseA+规范
