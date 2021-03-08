@@ -1,0 +1,6 @@
+# typeScript
+
+## typeScript基础
+
+
+
