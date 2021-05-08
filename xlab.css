@@ -1,0 +1,31 @@
+/* 水平垂直居中对齐的样式/ */
+.flex-center-all{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+/* 直接使用border实现0.5px的边框会在安卓5的机型上面有问题 */
+/* 下面两个样式需要搭配起来使用，给元素添加0.5px的外边框（没有兼容性问题） */
+.border-el{
+    position: relative;
+}
+.border-el::after{
+    position: absolute;
+    width: 200%;
+    height: 200%;
+    box-sizing: border-box;
+    border:1px solid #000;
+    transform-origin: 0 0;
+    transform: scale(0.5);
+    content: '';
+}
+/* 文本添加横线 */
+.line-through{
+    text-decoration: line-through;
+}
+/* 文字颜色渐变 */
+.linear-gradient-text{
+    background: linear-gradient(270deg, #d89c75 0%, #efdfd0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
